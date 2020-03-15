@@ -20,15 +20,15 @@ int ultimaPinza;
 int ang;
 int aceleracionCadera = 20;
 int aceleracionHombro = 20;
-int aceleracionCodo = 10;
+int aceleracionCodo = 20;
 int aceleracionMuneca = 20;
 int aceleracionPinza = 20;
 
 void setup() {
   //iniciamos el acomunicacion serial con el controlador
   Serial.begin(9600);
-  reiniciarPosiciones();
   borrarSerial();
+  reiniciarPosiciones();
 }
 
 void loop() {
@@ -80,7 +80,7 @@ void loop() {
       ang = ultimaPinza + aceleracionPinza;
       moverPinza(ang);
     }
-    if (inputUtil == (0)) {
+    if (inputUtil == int(0)) {
       ang = ultimaPinza - aceleracionPinza;
       moverPinza(ang);
     }
@@ -101,21 +101,8 @@ void moverHombro(int angulo){
   delay(20);
   motor.write(angulo);
   delay(2000);
-//  if (ultimaHombro > angulo) {
-//    for ( int j = ultimaHombro; j >= angulo; j--) {
-//      motor.write(j);
-//      delay(50);
-//    }
-//  }
-//  else if (ultimaHombro < angulo) {
-//    for ( int j = ultimaHombro; j <= angulo; j++) {
-//      motor.write(j);
-//      delay(50);
-//    }
-//  }
   ultimaHombro = angulo;
   motor.detach();
-  
 }
 
 void moverCodo(int angulo){
@@ -143,18 +130,17 @@ void moverPinza(int angulo){
   delay(2000);
   ultimaPinza = angulo;
   motor.detach();
- 
 }
 
 
 void reiniciarPosiciones(){
   ultimaCadera = 90;
   ultimaHombro = 0;
-  ultimaCodo = 100;
+  ultimaCodo = 0;
   ultimaMuneca = 0;
-  ultimaPinza = 60; 
+  ultimaPinza = 0; 
   //moverCadera(ultimaCadera);
-  moverHombro(ultimaHombro);
+  //moverHombro(ultimaHombro);
   moverCodo(ultimaCodo);
   //moverMuneca(ultimaMuneca);
   moverPinza(ultimaPinza);
