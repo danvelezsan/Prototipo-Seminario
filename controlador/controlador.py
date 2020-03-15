@@ -8,10 +8,8 @@ def run():
         arduino.flushInput()
         arduino.flushOutput()
         arduino.write(entrada.encode())
-        rawString = arduino.readline()
         arduino.flushInput()
         arduino.flushOutput()
-        print(rawString)
 
 
 if __name__ == "__main__":

@@ -9,8 +9,8 @@ Servo motor;
 
 boolean primera = true;
 String input ;
-int inputUtil; 
-int pos = 0;
+int inputUtil;
+int pos = 0; 
 int ultimaCadera;
 int ultimaHombro;
 int ultimaCodo;
@@ -44,29 +44,45 @@ void loop() {
     delay(20);
     borrarSerial();
 
-    if (inputUtil == int(0)) {
+    if (inputUtil == int(1)) {
+      ang = ultimaCadera - aceleracionCadera;
+      moverCadera(ang);
+    }
+    if (inputUtil == (2)) {
+      ang = ultimaCadera + aceleracionCadera;
+      moverCadera(ang);
+    }
+    if (inputUtil == (3)) {
       ang = ultimaHombro - aceleracionHombro;
       moverHombro(ang);
     }
-    if (inputUtil == int(1)) {
+    if (inputUtil == (4)) {
       ang = ultimaHombro + aceleracionHombro;
       moverHombro(ang);
     }
-    if (inputUtil == int(2)) {
-        ang = ultimaPinza - aceleracionPinza;
-        moverPinza(ang);
-    }
-    if (inputUtil == (3)) {
-        ang = ultimaPinza + aceleracionPinza;
-        moverPinza(ang);
-    }
-    if (inputUtil == (4)) {
-        ang = ultimaCodo + aceleracionCodo;
-        moverCodo(ang);
-    }
     if (inputUtil == (5)) {
-        ang = ultimaCodo - aceleracionCodo;
-        moverCodo(ang);
+      ang = ultimaCodo - aceleracionCodo;
+      moverCodo(ang);
+    }
+    if (inputUtil == (6)) {
+      ang = ultimaCodo + aceleracionCodo;
+      moverCodo(ang);
+    }
+    if (inputUtil == (7)) {
+      ang = ultimaMuneca - aceleracionMuneca;
+      moverMuneca(ang);
+    }
+    if (inputUtil == (8)) {
+      ang = ultimaMuneca + aceleracionMuneca;
+      moverMuneca(ang);
+    }
+    if (inputUtil == (9)) {
+      ang = ultimaPinza + aceleracionPinza;
+      moverPinza(ang);
+    }
+    if (inputUtil == (0)) {
+      ang = ultimaPinza - aceleracionPinza;
+      moverPinza(ang);
     }
   }
 }
@@ -107,7 +123,7 @@ void moverCodo(int angulo){
   delay(20);
   motor.write(angulo);
   delay(2000);
-  ultimaPinza = angulo;
+  ultimaCodo = angulo;
   motor.detach();
 }
 
@@ -116,7 +132,7 @@ void moverMuneca(int angulo){
   delay(20);
   motor.write(angulo);
   delay(2000);
-  ultimaPinza = angulo;
+  ultimaMuneca = angulo;
   motor.detach();
 }
 
@@ -134,13 +150,13 @@ void moverPinza(int angulo){
 void reiniciarPosiciones(){
   ultimaCadera = 90;
   ultimaHombro = 0;
-  ultimaCodo = 50;
+  ultimaCodo = 100;
   ultimaMuneca = 0;
   ultimaPinza = 60; 
   //moverCadera(ultimaCadera);
   moverHombro(ultimaHombro);
   moverCodo(ultimaCodo);
-  moverMuneca(ultimaMuneca);
+  //moverMuneca(ultimaMuneca);
   moverPinza(ultimaPinza);
   
 }
