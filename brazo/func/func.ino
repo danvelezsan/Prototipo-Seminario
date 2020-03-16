@@ -84,6 +84,9 @@ void loop() {
       ang = ultimaPinza - aceleracionPinza;
       moverPinza(ang);
     }
+    if (inputUtil == int(10)) {
+      moverPinza(0);
+    }
   }
 }
 
